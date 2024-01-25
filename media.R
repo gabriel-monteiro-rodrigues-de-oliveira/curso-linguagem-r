@@ -10,7 +10,7 @@ dados <- cars # atribuir a variavel 'dados' o conjunto de dados 'cars' de 'datas
 media <- mean(cars$speed) # atribuir a variavel 'media' a media da coluna 'speed' do conjunto 'cars'
 
 #--- Moda
-library(DescTools) # importar biblioteca 'DescTools'
+library(DescTools)
 
 moda_dist <- Mode(cars$dist)
 moda_speed <- Mode(cars$speed) # 'Mode()' e um metodo da biblioteca 'DescTools'
@@ -34,3 +34,15 @@ amostra <- sample(1:50, 10, replace = FALSE)
 
 amostras <- dados[amostra, ]
 
+# rm(list = ls()) - remover todas variaveis
+
+#-- Regressão linear
+linear_model <- lm(dist ~ speed, data = cars)
+
+summary(linear_model)
+
+#-- Predição
+
+novos_dados <- data.frame("speed" = c(21, 24, 26))
+
+predict(linear_model, newdata = novos_dados, interval = "confidence")
